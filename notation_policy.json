@@ -1,0 +1,20 @@
+{
+    "version": "1.0",
+    "trustPolicies": [
+        {
+            "name": "aws-signer-tp",
+            "registryScopes": [
+                "*"
+            ],
+            "signatureVerification": {
+                "level": "strict"
+            },
+            "trustStores": [
+                "signingAuthority:aws-signer-ts"
+            ],
+            "trustedIdentities": [
+                "arn:aws:signer:ap-southeast-1:065147804054:/signing-profiles/stc_mm2_ecr_signing_profile"
+            ]
+        }
+    ]
+}

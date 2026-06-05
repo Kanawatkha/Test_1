@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="33" failures="0" errors="0" time="4.665">
+  <testsuite name="KafkaUtil" errors="0" failures="0" skipped="0" timestamp="2024-10-28T07:41:26" time="2.53" tests="3">
+    <testcase classname="KafkaUtil initConnection should initialize Kafka consumer and connect successfully" name="KafkaUtil initConnection should initialize Kafka consumer and connect successfully" time="0.006">
+    </testcase>
+    <testcase classname="KafkaUtil initConnection should throw an error if connection fails" name="KafkaUtil initConnection should throw an error if connection fails" time="0.007">
+    </testcase>
+    <testcase classname="KafkaUtil connect should log an error when consumer fails to connect" name="KafkaUtil connect should log an error when consumer fails to connect" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="execute" errors="0" failures="0" skipped="0" timestamp="2024-10-28T07:41:29" time="0.581" tests="1">
+    <testcase classname="execute should initialize KafkaConsumerController and call consumeMessage" name="execute should initialize KafkaConsumerController and call consumeMessage" time="0.024">
+    </testcase>
+  </testsuite>
+  <testsuite name="KafkaConsumerController" errors="0" failures="0" skipped="0" timestamp="2024-10-28T07:41:29" time="0.349" tests="2">
+    <testcase classname="KafkaConsumerController should subscribe to the correct topic and process messages" name="KafkaConsumerController should subscribe to the correct topic and process messages" time="0.007">
+    </testcase>
+    <testcase classname="KafkaConsumerController should handle errors during message processing" name="KafkaConsumerController should handle errors during message processing" time="0.021">
+    </testcase>
+  </testsuite>
+  <testsuite name="PackageStatusService" errors="0" failures="0" skipped="0" timestamp="2024-10-28T07:41:30" time="0.253" tests="9">
+    <testcase classname="PackageStatusService updateStatus should update status if it exists in the database" name="PackageStatusService updateStatus should update status if it exists in the database" time="0.02">
+    </testcase>
+    <testcase classname="PackageStatusService updateStatus should insert status if it does not exist in the database" name="PackageStatusService updateStatus should insert status if it does not exist in the database" time="0.019">
+    </testcase>
+    <testcase classname="PackageStatusService updateStatus should handle errors thrown during database queries" name="PackageStatusService updateStatus should handle errors thrown during database queries" time="0.002">
+    </testcase>
+    <testcase classname="PackageStatusService checkTypeMessage should return &quot;daily&quot; for D-prefixed headerId" name="PackageStatusService checkTypeMessage should return &quot;daily&quot; for D-prefixed headerId" time="0.004">
+    </testcase>
+    <testcase classname="PackageStatusService checkTypeMessage should return &quot;emergency&quot; for E-prefixed headerId" name="PackageStatusService checkTypeMessage should return &quot;emergency&quot; for E-prefixed headerId" time="0.003">
+    </testcase>
+    <testcase classname="PackageStatusService checkTypeMessage should return &quot;Initial&quot; for other headerId prefixes" name="PackageStatusService checkTypeMessage should return &quot;Initial&quot; for other headerId prefixes" time="0.003">
+    </testcase>
+    <testcase classname="PackageStatusService isStatusExist should return true if status exists in the database" name="PackageStatusService isStatusExist should return true if status exists in the database" time="0.009">
+    </testcase>
+    <testcase classname="PackageStatusService isStatusExist should return false if status does not exist in the database" name="PackageStatusService isStatusExist should return false if status does not exist in the database" time="0.004">
+    </testcase>
+    <testcase classname="PackageStatusService insert should throw an error if DB query fails" name="PackageStatusService insert should throw an error if DB query fails" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Utility Class Tests" errors="0" failures="0" skipped="0" timestamp="2024-10-28T07:41:30" time="0.102" tests="6">
+    <testcase classname="Utility Class Tests getDateNow should return the current date in the specified format" name="Utility Class Tests getDateNow should return the current date in the specified format" time="0.02">
+    </testcase>
+    <testcase classname="Utility Class Tests getDateNowByFormat should return the current date in a custom format" name="Utility Class Tests getDateNowByFormat should return the current date in a custom format" time="0.004">
+    </testcase>
+    <testcase classname="Utility Class Tests dateFormat should convert date from one format to another" name="Utility Class Tests dateFormat should convert date from one format to another" time="0.002">
+    </testcase>
+    <testcase classname="Utility Class Tests calculateTimeDifference should calculate the time difference correctly" name="Utility Class Tests calculateTimeDifference should calculate the time difference correctly" time="0.001">
+    </testcase>
+    <testcase classname="Utility Class Tests replaceEnd should replace &quot;,end&quot; with &quot;;&quot; and append &quot;end&quot; if needed" name="Utility Class Tests replaceEnd should replace &quot;,end&quot; with &quot;;&quot; and append &quot;end&quot; if needed" time="0.001">
+    </testcase>
+    <testcase classname="Utility Class Tests encode should return the input string without encoding" name="Utility Class Tests encode should return the input string without encoding" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="FileUtil" errors="0" failures="0" skipped="0" timestamp="2024-10-28T07:41:30" time="0.173" tests="2">
+    <testcase classname="FileUtil readFile should read the file correctly" name="FileUtil readFile should read the file correctly" time="0.003">
+    </testcase>
+    <testcase classname="FileUtil readFile should log an error and throw if an error occurs" name="FileUtil readFile should log an error and throw if an error occurs" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="RabbitMqUtil" errors="0" failures="0" skipped="0" timestamp="2024-10-28T07:41:30" time="0.14" tests="4">
+    <testcase classname="RabbitMqUtil createChannel should create a channel successfully" name="RabbitMqUtil createChannel should create a channel successfully" time="0.002">
+    </testcase>
+    <testcase classname="RabbitMqUtil createChannel should throw an error if connection fails" name="RabbitMqUtil createChannel should throw an error if connection fails" time="0.002">
+    </testcase>
+    <testcase classname="RabbitMqUtil publishMessage should publish a message successfully" name="RabbitMqUtil publishMessage should publish a message successfully" time="0.001">
+    </testcase>
+    <testcase classname="RabbitMqUtil publishMessage should throw an error if publish fails" name="RabbitMqUtil publishMessage should throw an error if publish fails" time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="MySqlDbUtil" errors="0" failures="0" skipped="0" timestamp="2024-10-28T07:41:30" time="0.097" tests="4">
+    <testcase classname="MySqlDbUtil getConnection should get a connection from the read pool" name="MySqlDbUtil getConnection should get a connection from the read pool" time="0.003">
+    </testcase>
+    <testcase classname="MySqlDbUtil getConnection should get a connection from the write pool" name="MySqlDbUtil getConnection should get a connection from the write pool" time="0.007">
+    </testcase>
+    <testcase classname="MySqlDbUtil queryWithTransaction should handle a transaction successfully" name="MySqlDbUtil queryWithTransaction should handle a transaction successfully" time="0.002">
+    </testcase>
+    <testcase classname="MySqlDbUtil queryWithTransaction should handle transaction rollback on error" name="MySqlDbUtil queryWithTransaction should handle transaction rollback on error" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Logger" errors="0" failures="0" skipped="0" timestamp="2024-10-28T07:41:30" time="0.057" tests="2">
+    <testcase classname="Logger info should call winston logger with correct parameters" name="Logger info should call winston logger with correct parameters" time="0.002">
+    </testcase>
+    <testcase classname="Logger error should call winston logger with correct parameters" name="Logger error should call winston logger with correct parameters" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>

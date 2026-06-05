@@ -1,0 +1,46 @@
+# ############## Don't edit this section ################
+# yaml-language-server: $schema=https://bitbucket.org/atlassianlabs/intellij-bitbucket-references-plugin/raw/master/src/main/resources/schemas/bitbucket-pipelines.schema.json
+# Author: Everyone in gosoft Thailand team contributed to this pipeline
+# Maintainer: DevOps's Project owner team
+# #######################################################
+
+# กิตติกรรมประกาศ ขอขอบคุณ
+# CI/CD ตั้งต้น: ความรู้ทั้งหมด จากหนังสือ-Bitbucket-Pipeline ผู้แต่ง:นนท์ Nont Banditwong
+# Original CI/CD Template และการเรียกใช้: ทีม OCM ตึก KongKana พัฒนาต่อยอด
+# CI/CD Pipeline ฝั่งเรียกใช้งาน: ทีม SCM ปรับปรุงเพื่อทีม TDG
+# CI/CD Template ที่เก็บส่วนกลาง: ทีม SCM พัฒนาจาก OCM ตึก KongKana
+
+# ไปที่หน้า Web bitbucket: Repository Settings
+#สร้างตัวแปร Repository Varible
+#CI_AWS_OIDC_ECR_PULL_ROLE_ARN=arn:aws:iam::257394478770:role/gos-dso-cid-bitbucket-cicd-pipeline-execution-role
+#CI_SONAR_HOST_URL <https://sonar.gosoft.co.th>
+#CI_SONAR_TOKEN sqa_2f9dcb43b803716f085f9418be3aabc5d0f6eb28
+#CI_SONAR_PROJECTKEY_PREFIX `serviceCode-sysCode-appCode`
+### ไปที่หน้า Web bitbucket: Deployments
+#สร้าง environment dev
+#CI_ECR_DEST_URI `aws-account-id`.dkr.ecr.ap-southeast-1.amazonaws.com
+#CI_ECR_SRC_URI `aws-account-id`.dkr.ecr.ap-southeast-1.amazonaws.com
+#CI_AWS_ECS_CLUSTER `xxx-cluster-dev`
+#CI_AWS_ECS_SERVICE `xxx-service-dev`
+#CI_AWS_ECS_TASK_DEF `xxx-taskdef-dev`
+#CI_AWS_OIDC_RESOURCE_ACCESS_ROLE_ARN arn:aws:iam::`aws-account-id`:role/msm-bitbucket-cicd-pipeline-execution-role
+#CI_AWS_SIGNING_PROFILE_ARN arn:aws:signer:ap-southeast-1:`aws-account-id`:/signing-profiles/ecr_signing_profile
+# และแจ้งทีม Cloud Implement สร้าง AWS Role ตามเอกสาร 
+# https://cpallgroup.sharepoint.com/:p:/r/sites/QPMGosoft/Shared%20Documents/CICD/CICD_17_Steps/Hand-On/%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99-CICD-Repository-Template.pptx?d=w495324464542493e8a5d431d6b7145ac&csf=1&web=1&e=JJ70v8
+    
+pipelines:
+  pull-requests:
+    feature/*: # 2. Dev เปิด Pull Request จาก feature/* ขอ merge เข้า main, จะถูก Scan ด้วย SonarQube
+      import: sls-alm-slmap-pipeline-template:main:xxxxfeature-pull-request-merge-to-main-pipeline
+  branches:
+    feature/*: # 1. feature ที่ Dev แก้ไขจะถูก Security Scan เพื่อให้เห็นคุณภาพของงาน code ของตนเอง
+      import: sls-alm-slmap-pipeline-template:main:xxxxfeature-branch-pipeline
+    main: # 3. Senior/Specialist อนุมัติ merge เข้า main, build container และ Container Sign Signature ด้วย AWS Profile
+      import: sls-alm-slmap-pipeline-template:main:xxxxmain-branch-pipeline
+    dev: # 4. Dev เปิด PR merge จาก main ไป dev(ซึ่งเป็นชื่อ env) # จะตรวจลายเซ็นต์และ Deploy ไปที่ DEV Env
+      import: sls-alm-slmap-pipeline-template:main:xxxxdev-branch-ecs-pipeline
+    uat: # 5. Dev เปิด PR merge จาก branch dev ไป qc/uat(ซึ่งเป็นชื่อ env) ที่ส่งงานให้ Tester # ตรวจลายเซ็นต์และ Deploy ไปที่ UAT Env
+      import: sls-alm-slmap-pipeline-template:main:xxxxuat-branch-ecs-pipeline
+    production: # 6. Senior/Specialist เปิด PR merge จาก branch uat + แนบหลักฐาน QC PASS ตรวจผ่าน, # pipeline ตรวจลายเซ็นต์และ Deploy ไปที่ Production Env
+      import: sls-alm-slmap-pipeline-template:main:xxxxproduction-branch-ecs-pipeline
+

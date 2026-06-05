@@ -1,0 +1,23 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0 # Use the lates stable version
+  hooks:
+  - id: check-yaml
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: detect-aws-credentials
+  - id: detect-private-key
+- repo: https://github.com/gitleaks/gitleaks
+  rev: v8.16.1
+  hooks:
+  - id: gitleaks
+- repo: https://github.com/pre-commit/mirrors-eslint
+  rev: ''
+  hooks:
+  - id: eslint
+    files: \.[jt]sx?$  # *.js, *.jsx, *.ts and *.tsx
+    types: [file]
+    eslint: recommended
+    additional_dependencies:
+    -   eslint
+    -   eslint-formatter-junit

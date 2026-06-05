@@ -1,0 +1,28 @@
+image:
+  name: 257394478770.dkr.ecr.ap-southeast-1.amazonaws.com/ubi9/nodejs-20-minimal:latest
+  aws:
+    oidc-role: '$CI_AWS_OIDC_ECR_PULL_ROLE_ARN'
+
+options:
+  size: 4x
+
+definitions:
+  services:
+    docker:
+      memory: 2048
+      image:
+        name: public.ecr.aws/docker/library/docker:28-dind
+
+pipelines:
+  pull-requests:
+    "feature/*":
+      import: stc-spt-sptap-backend-pipeline-template:feature/nss-sc-pipline:feature-pull-request-pipeline
+  branches:
+    "release/*":
+      import: stc-spt-sptap-backend-pipeline-template:feature/nss-sc-pipline:build-feature-pipeline
+    dev:
+      import: stc-spt-sptap-backend-pipeline-template:feature/nss-sc-pipline:deploy-to-dev-pipeline
+    uat:
+      import: stc-spt-sptap-backend-pipeline-template:feature/nss-sc-pipline:deploy-to-uat-pipeline
+    main:
+      import: stc-spt-sptap-backend-pipeline-template:feature/nss-sc-pipline:deploy-to-prd-pipeline
