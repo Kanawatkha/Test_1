@@ -5,7 +5,7 @@ const ApplicationConfig = {
     app: {
         nodeEnv: process.env.NODE_ENV,
         appName: process.env.APP_NAME,
-        allowedServiceTypes: process.env.ALLOWED_SERVICE_TYPES || "1", // "1,2"
+        allowedServiceTypes: process.env.ALLOWED_SERVICE_TYPES || "1",
         allowedModules: process.env.MODULE_SALES_TRANSACTION_7DELI_VENDING?.split(",") || [],
         itemFlgTopSdl: process.env.ITEM_FLG_TOD_SDL ? process.env.ITEM_FLG_TOD_SDL.split(",") : [],
         tableMapping: process.env.TABLE_MAPPING?.split(",") || [],
@@ -20,7 +20,6 @@ const ApplicationConfig = {
         dbPassword: process.env.DB_PASSWORD,
         databaseName: process.env.DATA_BASE_NAME,
     },
-    // Added for Phase 1: Realignment of MongoDB configuration keys based on template structure
     mongoDb: {
         endpoint: process.env.MONGO_ENDPOINT || "",
         username: process.env.MONGO_USERNAME || "",

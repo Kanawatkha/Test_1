@@ -95,4 +95,20 @@ export class MongoClient {
             throw error;
         }
     }
+
+    async getAutomationTriggers(
+        correlationId: string = "-",
+        storeId: string = "-"
+    ): Promise<IMappingConfig[]> {
+        const functionName = "getAutomationTriggers";
+        try {
+            await this.getConnection(correlationId, storeId);
+            Logger.info(this.className, functionName, "Initiating database query for automation triggers from MAPPING_CONFIG", correlationId, storeId);
+            const result = await MappingConfigModel.find({ sourceTable: "AUTOMATION_TRIGGER" }).lean().exec();
+            return result as unknown as IMappingConfig[];
+        } catch (error: any) {
+            Logger.error(this.className, functionName, `Database operation failure during fetching automation triggers: ${error.message}`, correlationId, storeId);
+            throw error;
+        }
+    }
 }
